@@ -1,0 +1,22 @@
+.list {
+    display: flex;
+}
+
+.name-list {
+    max-width: 500px;
+    margin-right: 50px;
+    width: 450px;
+}
+
+.name-list__item {
+    cursor: pointer;
+    border: 1px solid rgba(165, 165, 165, 0.2);
+    padding: 10px;
+    background: rgba(165, 165, 165, 0.03);
+
+    transition: all .2s ease-in;
+}
+
+.name-list__item:hover {
+    background: rgba(165, 165, 165, 0.4);
+}

@@ -1,0 +1,41 @@
+.random {
+    padding: 15px;
+    background: rgba(165, 165, 165, 0.03);
+    border-radius: 10px;
+    justify-content: space-between;
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.random-img {
+    border-radius: 10px;
+    margin-right: 50px;
+    width: 200px;
+    height: 200px;
+}
+
+.random-info__title {
+    font-size: 36px;
+    color: rgb(229, 165, 26)
+}
+
+.random-info__list {
+    margin-right: 30px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.random-info__item {
+    margin-bottom: 10px;
+    padding-top: 5px;
+    border-top: 1px solid rgba(198, 198, 198, 0.1);
+    display: flex;
+    width: 230px;
+    justify-content: space-between;
+}
+
+.random-info__item:last-child {
+    margin-bottom: 0;
+}
+
+.random-info {}

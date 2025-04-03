@@ -1,0 +1,39 @@
+.header {
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header__title {
+    user-select: none;
+    font-size: 50px;
+    cursor: pointer;
+    transition: all .1s ease-in;
+}
+
+.header__title:hover {
+    color: rgb(229, 165, 26);
+}
+
+.header__sections {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.section-btn {
+    user-select: none;
+    font-size: 18px;
+    border: none;
+    background: none;
+    color: #258771;
+    padding: 10px;
+    border-radius: 5px;
+
+    transition: all .15s ease-in-out;
+}
+
+.section-btn:hover {
+    background: rgba(198, 198, 198, 0.1);
+}
