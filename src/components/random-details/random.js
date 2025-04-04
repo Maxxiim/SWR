@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SomeApi from "../../services/services";
 import Spinner from "../spinner/spinner";
+import Error from "../error-message/error";
 
 import "./random.css";
 
@@ -28,29 +29,50 @@ class Random extends Component {
     period: null,
     diameter: null,
     loading: true,
+    error: false,
+    test: false,
   };
 
   componentDidMount() {
     this.updatePlanet();
+    this.interval = setInterval(this.updatePlanet, 3000);
   }
 
-  updatePlanet = () => {
-    const id = Math.round(Math.random() * 10) + 1;
-    this.swapService.getPlanet(id).then((planet) => {
-      this.setState({
-        name: planet.name,
-        population: planet.population,
-        period: planet.orbital_period,
-        diameter: planet.diameter,
-        loading: false,
-      });
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  errorMessage = () => {
+    this.setState({
+      error: true,
+      loading: false,
     });
   };
 
+  updatePlanet = () => {
+    const id = Math.round(Math.random() * 10);
+    this.swapService
+      .getPlanet(id)
+      .then((planet) => {
+        this.setState({
+          id: id,
+          name: planet.name,
+          population: planet.population,
+          period: planet.orbital_period,
+          diameter: planet.diameter,
+          loading: false,
+        });
+      })
+      .catch(this.errorMessage);
+  };
+
   render() {
-    const { name, population, period, diameter, loading } = this.state;
+    const { name, population, period, diameter, loading, error } = this.state;
+    const hasData = !(loading || error);
+
+    const errorMessage = error ? <Error /> : null;
     const spinner = loading ? <Spinner /> : null;
-    const content = !loading ? (
+    const content = hasData ? (
       <PlanewView
         name={name}
         population={population}
@@ -60,6 +82,7 @@ class Random extends Component {
     ) : null;
     return (
       <div className="random">
+        {errorMessage}
         {spinner}
         {content}
       </div>
@@ -94,4 +117,5 @@ const PlanewView = ({ name, population, period, diameter }) => {
     </React.Fragment>
   );
 };
+
 export default Random;
